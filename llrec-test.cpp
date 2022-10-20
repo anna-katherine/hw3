@@ -67,7 +67,13 @@ void dealloc(Node* head)
 //   function object struct declarations
 // -----------------------------------------------
 
-
+struct tester
+{
+	bool operator() (int x)
+	{
+		return (x % 2 == 0); // even numbers
+	}
+};
 
 
 
@@ -85,11 +91,21 @@ int main(int argc, char* argv[])
     cout << "Original list: ";
     print(head);
 
-    // Test out your linked list code
+    // testing the pivot function
 
+		Node* small = new Node(11, nullptr); // doesnt matter
+		Node *large = new Node(1, nullptr);
 
+		int piv = 9; 
 
-    
+		llpivot(head, small, large, piv);
+		print (small);
+		print (large);
+
+		tester pred;
+    Node* testingComp = llfilter(head, pred);
+    print(testingComp);
+
     return 0;
 
 }

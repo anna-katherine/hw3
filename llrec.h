@@ -82,7 +82,21 @@ Node* llfilter(Node* head, Comp pred)
     // Provide your implementation below
     //*********************************************
 
-
+    if (head->next == NULL) // since we are checking each node (even the last) on recursive call
+        return nullptr; // last node
+		
+		Node* temp = llfilter(head->next, pred);
+    if (pred(head->val)) // if Comp returns true for the next node, we delete it
+    {
+				delete head; // deleting the memory allocated to the current head
+				return temp;
+    }
+		else // don't delete, just move on by setting head->next to recursive call
+		{
+			head->next = temp;
+			return head; 
+		}
+    llfilter(head->next, pred);
 }
 
 #endif

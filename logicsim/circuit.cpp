@@ -116,7 +116,7 @@ bool Circuit::parse(const char* fname)
                     getline(ss, s_in1, ',');
                     std::string s_output;
                     getline(ss, s_output, ',');
-                    m_gates.push_back(new NotGate(m_wires[stoi(s_in1)], m_wires[stoi(s_in2)], m_wires[stoi(s_output)]));
+                    m_gates.push_back(new NotGate(m_wires[stoi(s_in1)], m_wires[stoi(s_output)]));
                 }
             }
         }

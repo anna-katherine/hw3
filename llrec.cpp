@@ -17,13 +17,19 @@ void llpivot (Node*& head, Node*& smaller, Node*& larger, int pivot)
 	{
 		if (head->val > pivot)
 		{
+			Node* temp = head->next;
 			larger = head; // larger = head, and we call larger->next in the next call (to set it to whatever's next)
-			llpivot(head->next, smaller, larger->next, pivot);
+			larger->next = NULL; 
+			head = temp;
+			llpivot(head, smaller, larger->next, pivot);
 		}
 		else
 		{
+			Node* temp = head->next;
 			smaller = head; // same with smaller
-			llpivot(head->next, smaller->next, larger, pivot);
+			smaller->next = NULL;
+			head = temp;
+			llpivot(head, smaller->next, larger, pivot);
 		}
 	}
 }
